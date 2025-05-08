@@ -53,49 +53,49 @@ export const login = createAsyncThunk("auth/login", async (credentials: LoginCre
 
     return user // Возвращаем данные пользователя
   } catch (error: any) {
-    return rejectWithValue(error.response?.data?.message || "Ошибка входа")
+    return rejectWithValue(error.response?.data?.message || "Оши��ка входа")
   }
 })
 
 export const register = createAsyncThunk(
-  "auth/register",
-  async (credentials: RegisterCredentials, { rejectWithValue }) => {
-    try {
-      // Проверяем, существует ли пользователь с таким email
-      const checkResponse = await api.get("/users", {
-        params: {
+    "auth/register",
+    async (credentials: RegisterCredentials, { rejectWithValue }) => {
+      try {
+        // Проверяем, существует ли пользователь с таким email
+        const checkResponse = await api.get("/users", {
+          params: {
+            email: credentials.email,
+          },
+        })
+
+        if (checkResponse.data.length > 0) {
+          return rejectWithValue("Пользователь с таким email уже существует")
+        }
+
+        // Создаем нового пользователя
+        const userResponse = await api.post("/users", {
           email: credentials.email,
-        },
-      })
+          password: credentials.password,
+        })
 
-      if (checkResponse.data.length > 0) {
-        return rejectWithValue("Пользователь с таким email уже существует")
+        const newUser = userResponse.data
+
+        // Создаем стандартные категории для нового пользователя
+        const defaultCategories = createDefaultCategories(newUser.id)
+
+        // Добавляем категории в базу данных
+        const categoryPromises = defaultCategories.map((category) => api.post("/categories", category))
+
+        await Promise.all(categoryPromises)
+
+        // Сохраняем пользователя в localStorage
+        localStorage.setItem("user", JSON.stringify(newUser))
+
+        return newUser
+      } catch (error: any) {
+        return rejectWithValue(error.response?.data?.message || "Ошибка регистрации")
       }
-
-      // Создаем нового пользователя
-      const userResponse = await api.post("/users", {
-        email: credentials.email,
-        password: credentials.password,
-      })
-
-      const newUser = userResponse.data
-
-      // Создаем стандартные категории для нового пользователя
-      const defaultCategories = createDefaultCategories(newUser.id)
-
-      // Добавляем категории в базу данных
-      const categoryPromises = defaultCategories.map((category) => api.post("/categories", category))
-
-      await Promise.all(categoryPromises)
-
-      // Сохраняем пользователя в localStorage
-      localStorage.setItem("user", JSON.stringify(newUser))
-
-      return newUser
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || "Ошибка регистрации")
-    }
-  },
+    },
 )
 
 export const logout = createAsyncThunk("auth/logout", async () => {
@@ -126,44 +126,44 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(login.pending, (state) => {
-        state.loading = true
-        state.error = null
-      })
-      .addCase(login.fulfilled, (state, action: PayloadAction<User>) => {
-        state.loading = false
-        state.user = action.payload
-        state.isAuthenticated = true
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload as string
-      })
-      .addCase(register.pending, (state) => {
-        state.loading = true
-        state.error = null
-      })
-      .addCase(register.fulfilled, (state, action: PayloadAction<User>) => {
-        state.loading = false
-        state.user = action.payload
-        state.isAuthenticated = true
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload as string
-      })
-      .addCase(logout.fulfilled, (state) => {
-        state.user = null
-        state.isAuthenticated = false
-      })
-      .addCase(checkAuth.fulfilled, (state, action: PayloadAction<User>) => {
-        state.user = action.payload
-        state.isAuthenticated = true
-      })
-      .addCase(checkAuth.rejected, (state) => {
-        state.user = null
-        state.isAuthenticated = false
-      })
+        .addCase(login.pending, (state) => {
+          state.loading = true
+          state.error = null
+        })
+        .addCase(login.fulfilled, (state, action: PayloadAction<User>) => {
+          state.loading = false
+          state.user = action.payload
+          state.isAuthenticated = true
+        })
+        .addCase(login.rejected, (state, action) => {
+          state.loading = false
+          state.error = action.payload as string
+        })
+        .addCase(register.pending, (state) => {
+          state.loading = true
+          state.error = null
+        })
+        .addCase(register.fulfilled, (state, action: PayloadAction<User>) => {
+          state.loading = false
+          state.user = action.payload
+          state.isAuthenticated = true
+        })
+        .addCase(register.rejected, (state, action) => {
+          state.loading = false
+          state.error = action.payload as string
+        })
+        .addCase(logout.fulfilled, (state) => {
+          state.user = null
+          state.isAuthenticated = false
+        })
+        .addCase(checkAuth.fulfilled, (state, action: PayloadAction<User>) => {
+          state.user = action.payload
+          state.isAuthenticated = true
+        })
+        .addCase(checkAuth.rejected, (state) => {
+          state.user = null
+          state.isAuthenticated = false
+        })
   },
 })
 

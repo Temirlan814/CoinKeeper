@@ -27,8 +27,8 @@
       "id": 3,
       "name": "Продукты",
       "type": "expense",
-      "color": "#f44336",
-      "icon": "shopping_cart",
+      "color": "#ad241a",
+      "icon": "shopping_car",
       "userId": 1
     },
     {
@@ -54,6 +54,14 @@
       "color": "#607d8b",
       "icon": "directions_car",
       "userId": 1
+    },
+    {
+      "name": "Кино",
+      "type": "expense",
+      "color": "#4a6fa5",
+      "icon": "movie",
+      "userId": 1,
+      "id": 7
     }
   ],
   "transactions": [

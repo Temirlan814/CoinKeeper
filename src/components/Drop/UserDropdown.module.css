@@ -1,0 +1,77 @@
+.userDropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.userInfo:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.userEmail {
+    color: white;
+    font-size: 0.9rem;
+}
+
+.userAvatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #2ecc71;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 220px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.dropdownItem {
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdownItem:first-child {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.dropdownItem:hover:not(:first-child) {
+    background-color: #f5f5f5;
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0.25rem 0;
+}
+
+@media (max-width: 768px) {
+    .userEmail {
+        display: none;
+    }
+}
