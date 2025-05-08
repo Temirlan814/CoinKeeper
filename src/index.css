@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+:root {
+  --primary-color: #4a6fa5;
+  --secondary-color: #6b8cae;
+  --accent-color: #ff6b6b;
+  --background-color: #f5f5f5;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --text-light: #777777;
+  --border-color: #e0e0e0;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
