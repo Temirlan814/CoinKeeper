@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addTransaction, updateTransaction, type Transaction } from "../../store/slices/transactionSlice"
 import type { RootState, AppDispatch } from "../../store"
@@ -22,8 +22,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
 
   const [formData, setFormData] = useState({
     type: transaction?.type || "expense",
-    amount: transaction?.amount.toString() || "",
-    categoryId: transaction?.categoryId.toString() || "",
+    amount: transaction?.amount?.toString() || "",
+    categoryId: transaction?.categoryId?.toString() || "",
     date: transaction?.date || new Date().toISOString().split("T")[0],
     comment: transaction?.comment || "",
   })
@@ -33,7 +33,18 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
     categoryId: "",
   })
 
+  // Фильтруем категории по выбранному типу
   const filteredCategories = categories.filter((category) => category.type === formData.type)
+
+  // Устанавливаем первую категорию по умолчанию, если категория не выбрана
+  useEffect(() => {
+    if (filteredCategories.length > 0 && !formData.categoryId) {
+      setFormData((prev) => ({
+        ...prev,
+        categoryId: filteredCategories[0].id.toString(),
+      }))
+    }
+  }, [filteredCategories, formData.categoryId, formData.type])
 
   const formatAmount = (value: string) => {
     return value.replace(/[^\d.]/g, "")
@@ -65,6 +76,13 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
 
     if (name === "amount") {
       setFormData((prev) => ({ ...prev, [name]: formatAmount(value) }))
+    } else if (name === "type") {
+      // При изменении типа сбрасываем выбранную категорию
+      setFormData((prev) => ({
+        ...prev,
+        categoryId: filteredCategories[0].id.toString(),
+      }))
+
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }))
     }
@@ -95,71 +113,71 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.title}>{transaction ? "Редактировать транзакцию" : "Добавить транзакцию"}</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h2 className={styles.title}>{transaction ? "Редактировать транзакцию" : "Добавить транзакцию"}</h2>
 
-      <div className={styles.typeSelector}>
-        <label className={styles.radioLabel}>
-          <input
-            type="radio"
-            name="type"
-            value="expense"
-            checked={formData.type === "expense"}
+        <div className={styles.typeSelector}>
+          <label className={styles.radioLabel}>
+            <input
+                type="radio"
+                name="type"
+                value="expense"
+                checked={formData.type === "expense"}
+                onChange={handleChange}
+            />
+            <span>Расход</span>
+          </label>
+          <label className={styles.radioLabel}>
+            <input type="radio" name="type" value="income" checked={formData.type === "income"} onChange={handleChange} />
+            <span>Доход</span>
+          </label>
+        </div>
+
+        <Input
+            label="Сумма"
+            type="number"
+            name="amount"
+            value={formData.amount}
             onChange={handleChange}
-          />
-          <span>Расход</span>
-        </label>
-        <label className={styles.radioLabel}>
-          <input type="radio" name="type" value="income" checked={formData.type === "income"} onChange={handleChange} />
-          <span>Доход</span>
-        </label>
-      </div>
+            placeholder="Введите сумму"
+            error={errors.amount}
+            fullWidth
+        />
 
-      <Input
-        label="Сумма"
-        type="number"
-        name="amount"
-        value={formData.amount}
-        onChange={handleChange}
-        placeholder="Введите сумму"
-        error={errors.amount}
-        fullWidth
-      />
+        <Select
+            label="Категория"
+            name="categoryId"
+            value={formData.categoryId}
+            onChange={handleChange}
+            options={filteredCategories.map((cat) => ({
+              value: cat.id.toString(),
+              label: cat.name,
+            }))}
+            error={errors.categoryId}
+            fullWidth
+        />
 
-      <Select
-        label="Категория"
-        name="categoryId"
-        value={formData.categoryId}
-        onChange={handleChange}
-        options={filteredCategories.map((cat) => ({
-          value: cat.id.toString(),
-          label: cat.name,
-        }))}
-        error={errors.categoryId}
-        fullWidth
-      />
+        <Input label="Дата" type="date" name="date" value={formData.date} onChange={handleChange} fullWidth />
 
-      <Input label="Дата" type="date" name="date" value={formData.date} onChange={handleChange} fullWidth />
+        <Input
+            label="Комментарий (необязательно)"
+            type="text"
+            name="comment"
+            value={formData.comment}
+            onChange={handleChange}
+            placeholder="Добавьте комментарий"
+            fullWidth
+        />
 
-      <Input
-        label="Комментарий (необязательно)"
-        type="text"
-        name="comment"
-        value={formData.comment}
-        onChange={handleChange}
-        placeholder="Добавьте комментарий"
-        fullWidth
-      />
-
-      <div className={styles.actions}>
-        <Button type="button" variant="secondary" onClick={onClose} className={styles.actionButton}>
-          Отмена
-        </Button>
-        <Button type="submit" variant="primary" className={styles.actionButton}>
-          {transaction ? "Обновить" : "Добавить"}
-        </Button>
-      </div>
-    </form>
+        <div className={styles.actions}>
+          <Button type="button" variant="secondary" onClick={onClose} className={styles.actionButton}>
+            Отмена
+          </Button>
+          <Button type="submit" variant="primary" className={styles.actionButton}>
+            {transaction ? "Обновить" : "Добавить"}
+          </Button>
+        </div>
+      </form>
   )
 }
 
