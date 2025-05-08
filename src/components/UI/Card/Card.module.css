@@ -1,0 +1,17 @@
+.card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.cardTitle {
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cardContent {
+  padding: 1rem;
+}

@@ -1,0 +1,133 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "user@example.com",
+      "password": "password123"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Зарплата",
+      "type": "income",
+      "color": "#4caf50",
+      "icon": "money",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "name": "Фриланс",
+      "type": "income",
+      "color": "#2196f3",
+      "icon": "work",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "name": "Продукты",
+      "type": "expense",
+      "color": "#f44336",
+      "icon": "shopping_cart",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "name": "Аренда",
+      "type": "expense",
+      "color": "#ff9800",
+      "icon": "home",
+      "userId": 1
+    },
+    {
+      "id": 5,
+      "name": "Развлечения",
+      "type": "expense",
+      "color": "#9c27b0",
+      "icon": "movie",
+      "userId": 1
+    },
+    {
+      "id": 6,
+      "name": "Транспорт",
+      "type": "expense",
+      "color": "#607d8b",
+      "icon": "directions_car",
+      "userId": 1
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "type": "income",
+      "amount": 3000,
+      "categoryId": 1,
+      "date": "2023-05-01",
+      "comment": "Ежемесячная зарплата",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "type": "income",
+      "amount": 500,
+      "categoryId": 2,
+      "date": "2023-05-15",
+      "comment": "Веб-проект",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "type": "expense",
+      "amount": 150,
+      "categoryId": 3,
+      "date": "2023-05-05",
+      "comment": "Еженедельные продукты",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "type": "expense",
+      "amount": 800,
+      "categoryId": 4,
+      "date": "2023-05-01",
+      "comment": "Ежемесячная аренда",
+      "userId": 1
+    },
+    {
+      "id": 5,
+      "type": "expense",
+      "amount": 50,
+      "categoryId": 5,
+      "date": "2023-05-10",
+      "comment": "Билеты в кино",
+      "userId": 1
+    },
+    {
+      "id": 6,
+      "type": "expense",
+      "amount": 100,
+      "categoryId": 6,
+      "date": "2023-05-08",
+      "comment": "Бензин",
+      "userId": 1
+    },
+    {
+      "id": 7,
+      "type": "expense",
+      "amount": 120,
+      "categoryId": 3,
+      "date": "2023-05-12",
+      "comment": "Покупка продуктов",
+      "userId": 1
+    },
+    {
+      "id": 8,
+      "type": "expense",
+      "amount": 30,
+      "categoryId": 5,
+      "date": "2023-05-18",
+      "comment": "Подписка на стриминг",
+      "userId": 1
+    }
+  ]
+}
