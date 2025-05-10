@@ -98,8 +98,18 @@ const StatsPage: React.FC = () => {
     return new Intl.NumberFormat("ru-RU", {
       style: "currency",
       currency: "RUB",
+      useGrouping: true,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     }).format(value)
   }
+  const formatYAxis = (value: number) =>
+      new Intl.NumberFormat("ru-RU", {
+        useGrouping: true,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(value)
+
 
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
@@ -204,38 +214,41 @@ const StatsPage: React.FC = () => {
 
         <div className={styles.chartCard}>
           <h2 className={styles.chartTitle}>Доходы и расходы</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart
-              data={[
-                {
-                  name: "Доходы",
-                  amount: incomeData.reduce((sum, item) => sum + item.value, 0),
-                  color: "#4caf50",
-                },
-                {
-                  name: "Расходы",
-                  amount: expenseData.reduce((sum, item) => sum + item.value, 0),
-                  color: "#f44336",
-                },
-              ]}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis tickFormatter={(value) => formatCurrency(value)} />
-              <Tooltip formatter={(value) => formatCurrency(value as number)} />
-              <Legend />
-              <Bar dataKey="amount" name="Сумма" fill="#8884d8">
-                {[
-                  { name: "Доходы", color: "#4caf50" },
-                  { name: "Расходы", color: "#f44336" },
-                ].map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <div className={styles.chartWrapper}>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                  data={[
+                    {
+                      name: "Доходы",
+                      amount: incomeData.reduce((sum, item) => sum + item.value, 0),
+                      color: "#4caf50",
+                    },
+                    {
+                      name: "Расходы",
+                      amount: expenseData.reduce((sum, item) => sum + item.value, 0),
+                      color: "#f44336",
+                    },
+                  ]}
+                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis tickFormatter={formatYAxis} />
+                <Tooltip formatter={(value) => formatCurrency(value as number)} />
+                <Legend />
+                <Bar dataKey="amount" name="Сумма" fill="#8884d8">
+                  {[
+                    { name: "Доходы", color: "#4caf50" },
+                    { name: "Расходы", color: "#f44336" },
+                  ].map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
+
       </div>
     </div>
   )

@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchCategories, deleteCategory, type Category } from "../../store/slices/categorySlice"
 import type { RootState, AppDispatch } from "../../store"
-import Card from "../../components/UI/Card/Card"
 import CategoryList from "../../components/CategoryList/CategoryList"
 import CategoryForm from "../../components/CategoryForm/CategoryForm"
 import Modal from "../../components/Modal/Modal"
@@ -53,7 +52,7 @@ const SettingsPage: React.FC = () => {
     <div className={styles.settingsPage}>
       <h1 className={styles.title}>Настройки</h1>
 
-      <Card className={styles.categoriesCard}>
+      <div className={styles.categoriesCard}>
         <div className={styles.cardHeader}>
           <h2 className={styles.cardTitle}>Категории</h2>
           <button onClick={handleAddCategory} className={styles.settingButton}>
@@ -81,7 +80,7 @@ const SettingsPage: React.FC = () => {
         ) : (
           <CategoryList categories={filteredCategories} onEdit={handleEditCategory} onDelete={handleDeleteCategory} />
         )}
-      </Card>
+      </div>
 
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <CategoryForm category={selectedCategory || undefined} onClose={closeModal} />

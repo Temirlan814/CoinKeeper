@@ -19,12 +19,6 @@
   gap: 1.5rem;
 }
 
-.chartsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
 .chartCard {
   padding: 1.5rem;
 }
@@ -36,11 +30,6 @@
   text-align: center;
 }
 
-.chartWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
 
 .chartLegend {
   display: flex;
@@ -105,4 +94,19 @@
   border-radius: 8px;
   box-shadow: var(--shadow);
   overflow: hidden;
+  padding: 1.5rem;
+  width: 100%;
+  display: block;
 }
+
+.chartsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.chartWrapper {
+  width: 100%;
+}
+

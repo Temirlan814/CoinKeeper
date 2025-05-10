@@ -179,6 +179,14 @@
       "icon": "school",
       "userId": 2,
       "id": 21
+    },
+    {
+      "name": "Доходы из игр",
+      "type": "income",
+      "color": "#19222e",
+      "icon": "game",
+      "userId": 1,
+      "id": 22
     }
   ],
   "transactions": [
@@ -256,12 +264,21 @@
     },
     {
       "type": "income",
-      "amount": 100000,
+      "amount": 50000,
       "categoryId": 2,
       "date": "2025-05-10",
-      "comment": "победил акции",
+      "comment": "win ",
       "userId": 1,
       "id": 13
+    },
+    {
+      "type": "income",
+      "amount": 10000,
+      "categoryId": 22,
+      "date": "2025-05-10",
+      "comment": "турнир",
+      "userId": 1,
+      "id": 14
     }
   ]
 }
