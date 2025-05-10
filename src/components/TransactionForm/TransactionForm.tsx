@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addTransaction, updateTransaction, type Transaction } from "../../store/slices/transactionSlice"
 import type { RootState, AppDispatch } from "../../store"
-import Button from "../UI/Button/Button"
 import Input from "../UI/Input/Input"
 import Select from "../UI/Select/Select"
 import styles from "./TransactionForm.module.css"
@@ -75,12 +74,16 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
     if (name === "amount") {
       setFormData((prev) => ({ ...prev, [name]: formatAmount(value) }))
     } else if (name === "type") {
+      const selectedType = value as "income" | "expense"
+
       setFormData((prev) => ({
         ...prev,
-        categoryId: filteredCategories[0].id.toString(),
+        type: selectedType,
+        categoryId: categories.find((c) => c.type === selectedType)?.id.toString() || "",
       }))
+    }
 
-    } else {
+    else {
       setFormData((prev) => ({ ...prev, [name]: value }))
     }
   }
@@ -167,12 +170,19 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
         />
 
         <div className={styles.actions}>
-          <Button type="button" variant="secondary" onClick={onClose} className={styles.actionButton}>
+          <button
+              type="button"
+              onClick={onClose}
+              className={`${styles.actionButton} ${styles.secondary}`}
+          >
             Отмена
-          </Button>
-          <Button type="submit" variant="primary" className={styles.actionButton}>
+          </button>
+          <button
+              type="submit"
+              className={`${styles.actionButton} ${styles.primary}`}
+          >
             {transaction ? "Обновить" : "Добавить"}
-          </Button>
+          </button>
         </div>
       </form>
   )
