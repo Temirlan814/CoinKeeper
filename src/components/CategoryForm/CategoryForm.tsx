@@ -5,7 +5,6 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addCategory, updateCategory, type Category } from "../../store/slices/categorySlice"
 import type { RootState, AppDispatch } from "../../store"
-import Input from "../UI/Input/Input"
 import IconSelector from "../Icon/IconSelector"
 import styles from "./CategoryForm.module.css"
 
@@ -80,16 +79,20 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ category, onClose }) => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.title}>{category ? "Редактировать категорию" : "Добавить категорию"}</h2>
 
-        <Input
-            label="Название категории"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Введите название категории"
-            error={errors.name}
-            fullWidth
-        />
+        <div className={styles.inputContainer}>
+          <label htmlFor="name" className={styles.label}>Название категории</label>
+          <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Введите название категории"
+              className={`${styles.input} ${errors.name ? styles.inputError : ""}`}
+          />
+          {errors.name && <p className={styles.errorText}>{errors.name}</p>}
+        </div>
+
 
         <div className={styles.typeSelector}>
           <label className={styles.radioLabel}>
@@ -108,7 +111,17 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ category, onClose }) => {
           </label>
         </div>
 
-        <Input label="Цвет" type="color" name="color" value={formData.color} onChange={handleChange} fullWidth />
+        <div className={styles.inputContainer}>
+          <label htmlFor="color" className={styles.label}>Цвет</label>
+          <input
+              type="color"
+              id="color"
+              name="color"
+              value={formData.color}
+              onChange={handleChange}
+              className={styles.input}
+          />
+        </div>
 
         <label className={styles.label}>Иконка</label>
         <IconSelector selectedIcon={formData.icon} onSelectIcon={handleIconSelect} />

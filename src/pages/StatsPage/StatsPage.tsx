@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import type { RootState } from "../../store"
 import type { Transaction } from "../../store/slices/transactionSlice"
-import Input from "../../components/UI/Input/Input"
 import {
   PieChart,
   Pie,

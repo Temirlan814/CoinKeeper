@@ -304,6 +304,14 @@
       "icon": "favorite",
       "userId": 3,
       "id": 36
+    },
+    {
+      "name": "Проверка",
+      "type": "expense",
+      "color": "#000000",
+      "icon": "other",
+      "userId": 1,
+      "id": 37
     }
   ],
   "transactions": [
@@ -405,6 +413,15 @@
       "comment": "123121",
       "userId": 3,
       "id": 15
+    },
+    {
+      "type": "expense",
+      "amount": 21,
+      "categoryId": 3,
+      "date": "2025-05-29",
+      "comment": "победил акции",
+      "userId": 1,
+      "id": 16
     }
   ]
 }

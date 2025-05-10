@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addTransaction, updateTransaction, type Transaction } from "../../store/slices/transactionSlice"
 import type { RootState, AppDispatch } from "../../store"
-import Input from "../UI/Input/Input"
 import styles from "./TransactionForm.module.css"
 
 interface TransactionFormProps {
@@ -132,16 +131,20 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
           </label>
         </div>
 
-        <Input
-            label="Сумма"
-            type="number"
-            name="amount"
-            value={formData.amount}
-            onChange={handleChange}
-            placeholder="Введите сумму"
-            error={errors.amount}
-            fullWidth
-        />
+        <div className={styles.inputContainer}>
+          <label htmlFor="amount" className={styles.label}>Сумма</label>
+          <input
+              id="amount"
+              type="number"
+              name="amount"
+              value={formData.amount}
+              onChange={handleChange}
+              placeholder="Введите сумму"
+              className={`${styles.input} ${errors.amount ? styles.inputError : ""}`}
+          />
+          {errors.amount && <p className={styles.errorText}>{errors.amount}</p>}
+        </div>
+
 
         <div className={styles.inputContainer}>
           <label htmlFor="categoryId" className={styles.label}>Категория</label>
@@ -162,17 +165,31 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
         </div>
 
 
-        <Input label="Дата" type="date" name="date" value={formData.date} onChange={handleChange} fullWidth />
+        <div className={styles.inputContainer}>
+          <label htmlFor="date" className={styles.label}>Дата</label>
+          <input
+              id="date"
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              className={styles.input}
+          />
+        </div>
 
-        <Input
-            label="Комментарий (необязательно)"
-            type="text"
-            name="comment"
-            value={formData.comment}
-            onChange={handleChange}
-            placeholder="Добавьте комментарий"
-            fullWidth
-        />
+        <div className={styles.inputContainer}>
+          <label htmlFor="comment" className={styles.label}>Комментарий (необязательно)</label>
+          <input
+              id="comment"
+              type="text"
+              name="comment"
+              value={formData.comment}
+              onChange={handleChange}
+              placeholder="Добавьте комментарий"
+              className={styles.input}
+          />
+        </div>
+
 
         <div className={styles.actions}>
           <button
