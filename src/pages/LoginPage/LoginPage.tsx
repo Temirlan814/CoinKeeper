@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router-dom"
 import { login } from "../../store/slices/authSlice"
 import type { AppDispatch, RootState } from "../../store"
 import Input from "../../components/UI/Input/Input"
-import Card from "../../components/UI/Card/Card"
 import styles from "./LoginPage.module.css"
 
 const LoginPage: React.FC = () => {
@@ -74,52 +73,53 @@ const LoginPage: React.FC = () => {
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginContainer}>
-        <Card className={styles.loginCard}>
-          <h1 className={styles.title}>Вход в CoinKeeper</h1>
+        <div className={`${styles.card} ${styles.loginCard}`}>
+          <div className={styles.cardContent}>
+            <h1 className={styles.title}>Вход в CoinKeeper</h1>
 
-          {error && (
-            <div className={styles.error}>
-              {error === "Invalid email or password" ? "Неверный email или пароль" : error}
-            </div>
-          )}
+            {error && (
+                <div className={styles.error}>
+                  {error === "Invalid email or password" ? "Неверный email или пароль" : error}
+                </div>
+            )}
 
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <Input
-              label="Email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Введите ваш email"
-              error={formErrors.email}
-              fullWidth
-            />
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <Input
+                  label="Email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Введите ваш email"
+                  error={formErrors.email}
+                  fullWidth
+              />
 
-            <Input
-              label="Пароль"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Введите ваш пароль"
-              error={formErrors.password}
-              fullWidth
-            />
+              <Input
+                  label="Пароль"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Введите ваш пароль"
+                  error={formErrors.password}
+                  fullWidth
+              />
 
-            <button
-                type="submit"
-                className={styles.loginButton}
-                disabled={loading}
-            >
-              {loading ? "Вход..." : "Войти"}
-            </button>
+              <button
+                  type="submit"
+                  className={styles.loginButton}
+                  disabled={loading}
+              >
+                {loading ? "Вход..." : "Войти"}
+              </button>
+            </form>
 
-          </form>
-
-          <p className={styles.registerLink}>
-            Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
-          </p>
-        </Card>
+            <p className={styles.registerLink}>
+              Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   )

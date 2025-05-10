@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import type { RootState } from "../../store"
 import type { Transaction } from "../../store/slices/transactionSlice"
-import Card from "../../components/UI/Card/Card"
 import Input from "../../components/UI/Input/Input"
 import {
   PieChart,
@@ -119,15 +118,15 @@ const StatsPage: React.FC = () => {
     <div className={styles.statsPage}>
       <h1 className={styles.title}>Статистика</h1>
 
-      <Card className={styles.filterCard}>
+      <div  className={styles.filterCard}>
         <div className={styles.dateFilters}>
           <Input label="Начальная дата" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
           <Input label="Конечная дата" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </div>
-      </Card>
+      </div >
 
       <div className={styles.chartsContainer}>
-        <Card className={styles.chartCard}>
+        <div className={styles.chartCard}>
           <h2 className={styles.chartTitle}>Доходы по категориям</h2>
           {incomeData.length > 0 ? (
             <div className={styles.chartWrapper}>
@@ -163,9 +162,9 @@ const StatsPage: React.FC = () => {
           ) : (
             <p className={styles.noData}>Нет данных о доходах за выбранный период.</p>
           )}
-        </Card>
+        </div>
 
-        <Card className={styles.chartCard}>
+        <div  className={styles.chartCard}>
           <h2 className={styles.chartTitle}>Расходы по категориям</h2>
           {expenseData.length > 0 ? (
             <div className={styles.chartWrapper}>
@@ -201,9 +200,9 @@ const StatsPage: React.FC = () => {
           ) : (
             <p className={styles.noData}>Нет данных о расходах за выбранный период.</p>
           )}
-        </Card>
+        </div >
 
-        <Card className={styles.chartCard}>
+        <div className={styles.chartCard}>
           <h2 className={styles.chartTitle}>Доходы и расходы</h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
@@ -236,7 +235,7 @@ const StatsPage: React.FC = () => {
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-        </Card>
+        </div>
       </div>
     </div>
   )

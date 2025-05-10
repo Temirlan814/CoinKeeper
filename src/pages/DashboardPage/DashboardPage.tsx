@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchTransactions, deleteTransaction, type Transaction } from "../../store/slices/transactionSlice"
 import { fetchCategories } from "../../store/slices/categorySlice"
 import type { RootState, AppDispatch } from "../../store"
-import Card from "../../components/UI/Card/Card"
 import TransactionList from "../../components/TransactionList/TransactionList"
 import TransactionForm from "../../components/TransactionForm/TransactionForm"
 import Modal from "../../components/Modal/Modal"
@@ -84,20 +83,20 @@ const DashboardPage: React.FC = () => {
       <h1 className={styles.title}>Главная</h1>
 
       <div className={styles.summaryCards}>
-        <Card className={styles.balanceCard}>
+        <div className={styles.balanceCard}>
           <h2 className={styles.cardTitle}>Текущий баланс</h2>
           <p className={styles.balanceAmount}>{formatCurrency(balance)}</p>
-        </Card>
+        </div>
 
-        <Card className={styles.incomeCard}>
+        <div className={styles.incomeCard}>
           <h2 className={styles.cardTitle}>Общий доход</h2>
           <p className={styles.incomeAmount}>{formatCurrency(income)}</p>
-        </Card>
+        </div>
 
-        <Card className={styles.expenseCard}>
+        <div className={styles.expenseCard}>
           <h2 className={styles.cardTitle}>Общие расходы</h2>
           <p className={styles.expenseAmount}>{formatCurrency(expense)}</p>
-        </Card>
+        </div>
       </div>
 
       <div className={styles.transactionsSection}>

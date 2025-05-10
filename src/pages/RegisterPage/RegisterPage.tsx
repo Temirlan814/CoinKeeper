@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router-dom"
 import { register } from "../../store/slices/authSlice"
 import type { AppDispatch, RootState } from "../../store"
 import Input from "../../components/UI/Input/Input"
-import Card from "../../components/UI/Card/Card"
 import styles from "./RegisterPage.module.css"
 
 const RegisterPage: React.FC = () => {
@@ -88,66 +87,68 @@ const RegisterPage: React.FC = () => {
   return (
     <div className={styles.registerPage}>
       <div className={styles.registerContainer}>
-        <Card className={styles.registerCard}>
-          <h1 className={styles.title}>Создание аккаунта</h1>
+        <div className={`${styles.card} ${styles.registerCard}`}>
+          <div className={styles.cardContent}>
+            <h1 className={styles.title}>Создание аккаунта</h1>
 
-          {error && (
-            <div className={styles.error}>
-              {error === "User with this email already exists"
-                ? "Пользователь с таким email уже существует"
-                : error === "Registration failed"
-                  ? "Ошибка регистрации"
-                  : error}
-            </div>
-          )}
+            {error && (
+                <div className={styles.error}>
+                  {error === "User with this email already exists"
+                      ? "Пользователь с таким email уже существует"
+                      : error === "Registration failed"
+                          ? "Ошибка регистрации"
+                          : error}
+                </div>
+            )}
 
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <Input
-              label="Email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Введите ваш email"
-              error={formErrors.email}
-              fullWidth
-            />
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <Input
+                  label="Email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Введите ваш email"
+                  error={formErrors.email}
+                  fullWidth
+              />
 
-            <Input
-              label="Пароль"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Введите пароль"
-              error={formErrors.password}
-              fullWidth
-            />
+              <Input
+                  label="Пароль"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Введите пароль"
+                  error={formErrors.password}
+                  fullWidth
+              />
 
-            <Input
-              label="Подтверждение пароля"
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              placeholder="Подтвердите пароль"
-              error={formErrors.confirmPassword}
-              fullWidth
-            />
+              <Input
+                  label="Подтверждение пароля"
+                  type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  placeholder="Подтвердите пароль"
+                  error={formErrors.confirmPassword}
+                  fullWidth
+              />
 
-            <button
-                type="submit"
-                className={styles.registerButton}
-                disabled={loading}
-            >
-              {loading ? "Регистрация..." : "Зарегистрироваться"}
-            </button>
-          </form>
+              <button
+                  type="submit"
+                  className={styles.registerButton}
+                  disabled={loading}
+              >
+                {loading ? "Регистрация..." : "Зарегистрироваться"}
+              </button>
+            </form>
 
-          <p className={styles.loginLink}>
-            Уже есть аккаунт? <Link to="/login">Войти</Link>
-          </p>
-        </Card>
+            <p className={styles.loginLink}>
+              Уже есть аккаунт? <Link to="/login">Войти</Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   )

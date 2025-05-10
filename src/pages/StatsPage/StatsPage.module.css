@@ -99,3 +99,10 @@
     gap: 1rem;
   }
 }
+.filterCard,
+.chartCard {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
