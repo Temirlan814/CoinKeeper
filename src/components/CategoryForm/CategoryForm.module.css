@@ -30,6 +30,12 @@
   cursor: pointer;
 }
 
+.label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;

@@ -4,6 +4,11 @@
       "id": 1,
       "email": "user@example.com",
       "password": "password123"
+    },
+    {
+      "email": "temirlan123@mail.ru",
+      "password": "123456",
+      "id": 2
     }
   ],
   "categories": [
@@ -28,7 +33,7 @@
       "name": "Продукты",
       "type": "expense",
       "color": "#ad241a",
-      "icon": "shopping_car",
+      "icon": "groceries",
       "userId": 1
     },
     {
@@ -36,7 +41,7 @@
       "name": "Аренда",
       "type": "expense",
       "color": "#ff9800",
-      "icon": "home",
+      "icon": "salary",
       "userId": 1
     },
     {
@@ -44,7 +49,7 @@
       "name": "Развлечения",
       "type": "expense",
       "color": "#9c27b0",
-      "icon": "movie",
+      "icon": "food",
       "userId": 1
     },
     {
@@ -67,9 +72,113 @@
       "name": "Налоги",
       "type": "expense",
       "color": "#0062ff",
-      "icon": "",
+      "icon": "utilities",
       "userId": 1,
       "id": 8
+    },
+    {
+      "name": "Зарплата",
+      "type": "income",
+      "color": "#4caf50",
+      "icon": "money",
+      "userId": 2,
+      "id": 9
+    },
+    {
+      "name": "Фриланс",
+      "type": "income",
+      "color": "#2196f3",
+      "icon": "work",
+      "userId": 2,
+      "id": 10
+    },
+    {
+      "name": "Инвестиции",
+      "type": "income",
+      "color": "#9c27b0",
+      "icon": "trending_up",
+      "userId": 2,
+      "id": 11
+    },
+    {
+      "name": "Продукты",
+      "type": "expense",
+      "color": "#f44336",
+      "icon": "groceries",
+      "userId": 2,
+      "id": 12
+    },
+    {
+      "name": "Аренда",
+      "type": "expense",
+      "color": "#ff9800",
+      "icon": "home",
+      "userId": 2,
+      "id": 13
+    },
+    {
+      "name": "Развлечения",
+      "type": "expense",
+      "color": "#58365e",
+      "icon": "movie",
+      "userId": 2,
+      "id": 14
+    },
+    {
+      "name": "Транспорт",
+      "type": "expense",
+      "color": "#607d8b",
+      "icon": "directions_car",
+      "userId": 2,
+      "id": 15
+    },
+    {
+      "name": "Коммунальные услуги",
+      "type": "expense",
+      "color": "#795548",
+      "icon": "power",
+      "userId": 2,
+      "id": 16
+    },
+    {
+      "name": "Здоровье",
+      "type": "expense",
+      "color": "#e91e63",
+      "icon": "favorite",
+      "userId": 2,
+      "id": 17
+    },
+    {
+      "name": "Образование",
+      "type": "expense",
+      "color": "#3f51b5",
+      "icon": "school",
+      "userId": 2,
+      "id": 18
+    },
+    {
+      "name": "Коммунальные услуги",
+      "type": "expense",
+      "color": "#795548",
+      "icon": "power",
+      "userId": 2,
+      "id": 19
+    },
+    {
+      "name": "Здоровье",
+      "type": "expense",
+      "color": "#e91e63",
+      "icon": "favorite",
+      "userId": 2,
+      "id": 20
+    },
+    {
+      "name": "Образование",
+      "type": "expense",
+      "color": "#3f51b5",
+      "icon": "school",
+      "userId": 2,
+      "id": 21
     }
   ],
   "transactions": [
@@ -153,6 +262,33 @@
       "date": "2025-05-08",
       "comment": "Test comment",
       "userId": 1
+    },
+    {
+      "type": "expense",
+      "amount": 1000,
+      "categoryId": 12,
+      "date": "2025-05-09",
+      "comment": "продукты",
+      "userId": 2,
+      "id": 10
+    },
+    {
+      "type": "expense",
+      "amount": 10000,
+      "categoryId": 14,
+      "date": "2025-05-09",
+      "comment": "",
+      "userId": 2,
+      "id": 11
+    },
+    {
+      "type": "expense",
+      "amount": 10000,
+      "categoryId": 20,
+      "date": "2025-05-09",
+      "comment": "131321",
+      "userId": 2,
+      "id": 12
     }
   ]
 }

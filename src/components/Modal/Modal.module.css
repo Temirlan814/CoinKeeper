@@ -47,6 +47,14 @@
 
 @media (max-width: 600px) {
   .modalContent {
-    padding: 1.5rem;
+    padding: 1rem;
+    width: 95%;
+    max-width: none;
+    border-radius: 8px;
+  }
+
+  .closeButton {
+    top: 0.5rem;
+    right: 0.5rem;
   }
 }

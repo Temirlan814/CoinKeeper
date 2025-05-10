@@ -49,3 +49,23 @@
   flex: 1;
   min-width: 120px;
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .typeSelector {
+    gap: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .actionButton {
+    width: 100%;
+  }
+}
