@@ -33,10 +33,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
     categoryId: "",
   })
 
-  // Фильтруем категории по выбранному типу
   const filteredCategories = categories.filter((category) => category.type === formData.type)
 
-  // Устанавливаем первую категорию по умолчанию, если категория не выбрана
   useEffect(() => {
     if (filteredCategories.length > 0 && !formData.categoryId) {
       setFormData((prev) => ({

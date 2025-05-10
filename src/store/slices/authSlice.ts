@@ -42,16 +42,15 @@ export const login = createAsyncThunk("auth/login", async (credentials: LoginCre
       },
     })
 
-    const user = response.data[0] // Предполагается, что ответ - массив
+    const user = response.data[0]
 
     if (!user) {
       return rejectWithValue("Неверный email или пароль")
     }
 
-    // Сохраняем пользователя в localStorage
     localStorage.setItem("user", JSON.stringify(user))
 
-    return user // Возвращаем данные пользователя
+    return user
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || "Оши��ка входа")
   }
@@ -72,7 +71,6 @@ export const register = createAsyncThunk(
           return rejectWithValue("Пользователь с таким email уже существует")
         }
 
-        // Создаем нового пользователя
         const userResponse = await api.post("/users", {
           email: credentials.email,
           password: credentials.password,
@@ -80,15 +78,12 @@ export const register = createAsyncThunk(
 
         const newUser = userResponse.data
 
-        // Создаем стандартные категории для нового пользователя
         const defaultCategories = createDefaultCategories(newUser.id)
 
-        // Добавляем категории в базу данных
         const categoryPromises = defaultCategories.map((category) => api.post("/categories", category))
 
         await Promise.all(categoryPromises)
 
-        // Сохраняем пользователя в localStorage
         localStorage.setItem("user", JSON.stringify(newUser))
 
         return newUser
