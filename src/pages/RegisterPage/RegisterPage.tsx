@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { register } from "../../store/slices/authSlice"
 import type { AppDispatch, RootState } from "../../store"
-import Input from "../../components/UI/Input/Input"
 import styles from "./RegisterPage.module.css"
 
 const RegisterPage: React.FC = () => {

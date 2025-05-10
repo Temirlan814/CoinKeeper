@@ -128,12 +128,32 @@ const StatsPage: React.FC = () => {
     <div className={styles.statsPage}>
       <h1 className={styles.title}>Статистика</h1>
 
-      <div  className={styles.filterCard}>
+      <div className={styles.filterCard}>
         <div className={styles.dateFilters}>
-          <Input label="Начальная дата" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-          <Input label="Конечная дата" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+          <div className={styles.inputContainer}>
+            <label htmlFor="startDate" className={styles.label}>Начальная дата</label>
+            <input
+                id="startDate"
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className={styles.input}
+            />
+          </div>
+
+          <div className={styles.inputContainer}>
+            <label htmlFor="endDate" className={styles.label}>Конечная дата</label>
+            <input
+                id="endDate"
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className={styles.input}
+            />
+          </div>
         </div>
-      </div >
+      </div>
+
 
       <div className={styles.chartsContainer}>
         <div className={styles.chartCard}>
