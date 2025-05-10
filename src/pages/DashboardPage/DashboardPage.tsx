@@ -76,10 +76,8 @@ const DashboardPage: React.FC = () => {
     }).format(amount)
   }
 
-  // Sort transactions by date (newest first)
   const sortedTransactions = [...transactions].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-  // Get only the last 10 transactions for the dashboard
   const recentTransactions = sortedTransactions.slice(0, 10)
 
   return (

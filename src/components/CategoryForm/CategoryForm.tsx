@@ -23,7 +23,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ category, onClose }) => {
     name: category?.name || "",
     type: category?.type || "expense",
     color: category?.color || "#4a6fa5",
-    icon: category?.icon || "other", // Используем ID иконки
+    icon: category?.icon || "other",
   })
 
   const [errors, setErrors] = useState({

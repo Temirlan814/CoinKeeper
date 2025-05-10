@@ -55,7 +55,6 @@ interface IconSelectorProps {
 const IconSelector: React.FC<IconSelectorProps> = ({ selectedIcon, onSelectIcon }) => {
   const [isOpen, setIsOpen] = useState(false)
 
-  // Находим выбранную иконку или используем иконку "other" по умолчанию
   const selectedIconObj =
       availableIcons.find((icon) => icon.id === selectedIcon) ||
       availableIcons.find((icon) => icon.id === "other") ||
@@ -70,8 +69,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({ selectedIcon, onSelectIcon 
     setIsOpen(false)
   }
 
-  // Получаем только уникальные иконки для отображения (без дубликатов)
-  const uniqueIcons = availableIcons.slice(0, 31) // Только основные иконки
+  const uniqueIcons = availableIcons.slice(0, 31)
 
   return (
       <div className={styles.iconSelectorContainer}>

@@ -1,6 +1,5 @@
 import type { Category } from "../store/slices/categorySlice"
 
-// Функция для создания стандартных категорий для нового пользователя
 export const createDefaultCategories = (userId: number): Omit<Category, "id">[] => {
   return [
     {

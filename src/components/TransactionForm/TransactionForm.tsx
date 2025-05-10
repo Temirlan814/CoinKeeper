@@ -75,7 +75,6 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
     if (name === "amount") {
       setFormData((prev) => ({ ...prev, [name]: formatAmount(value) }))
     } else if (name === "type") {
-      // При изменении типа сбрасываем выбранную категорию
       setFormData((prev) => ({
         ...prev,
         categoryId: filteredCategories[0].id.toString(),

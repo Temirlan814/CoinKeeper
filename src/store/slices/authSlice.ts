@@ -23,7 +23,6 @@ interface RegisterCredentials extends LoginCredentials {
   confirmPassword: string
 }
 
-// Проверяем localStorage при инициализации
 const storedUser = localStorage.getItem("user")
 
 const initialState: AuthState = {
@@ -60,7 +59,6 @@ export const register = createAsyncThunk(
     "auth/register",
     async (credentials: RegisterCredentials, { rejectWithValue }) => {
       try {
-        // Проверяем, существует ли пользователь с таким email
         const checkResponse = await api.get("/users", {
           params: {
             email: credentials.email,

@@ -28,7 +28,6 @@ const RegisterPage: React.FC = () => {
     confirmPassword: "",
   })
 
-  // Перенаправляем на dashboard, если пользователь уже авторизован
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/dashboard")
