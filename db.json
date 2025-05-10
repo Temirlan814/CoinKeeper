@@ -9,6 +9,11 @@
       "email": "temirlan123@mail.ru",
       "password": "123456",
       "id": 2
+    },
+    {
+      "email": "Test@test.e",
+      "password": "123456",
+      "id": 3
     }
   ],
   "categories": [
@@ -187,6 +192,118 @@
       "icon": "game",
       "userId": 1,
       "id": 22
+    },
+    {
+      "name": "Зарплата",
+      "type": "income",
+      "color": "#4caf50",
+      "icon": "money",
+      "userId": 3,
+      "id": 23
+    },
+    {
+      "name": "Фриланс",
+      "type": "income",
+      "color": "#2196f3",
+      "icon": "work",
+      "userId": 3,
+      "id": 24
+    },
+    {
+      "name": "Транспорт",
+      "type": "expense",
+      "color": "#607d8b",
+      "icon": "directions_car",
+      "userId": 3,
+      "id": 25
+    },
+    {
+      "name": "Инвестиции",
+      "type": "income",
+      "color": "#9c27b0",
+      "icon": "trending_up",
+      "userId": 3,
+      "id": 26
+    },
+    {
+      "name": "Продукты",
+      "type": "expense",
+      "color": "#f44336",
+      "icon": "shopping_cart",
+      "userId": 3,
+      "id": 27
+    },
+    {
+      "name": "Аренда",
+      "type": "expense",
+      "color": "#ff9800",
+      "icon": "home",
+      "userId": 3,
+      "id": 28
+    },
+    {
+      "name": "Развлечения",
+      "type": "expense",
+      "color": "#58365e",
+      "icon": "movie",
+      "userId": 3,
+      "id": 29
+    },
+    {
+      "name": "Коммунальные услуги",
+      "type": "expense",
+      "color": "#795548",
+      "icon": "power",
+      "userId": 3,
+      "id": 30
+    },
+    {
+      "name": "Здоровье",
+      "type": "expense",
+      "color": "#e91e63",
+      "icon": "favorite",
+      "userId": 3,
+      "id": 31
+    },
+    {
+      "name": "Образование",
+      "type": "expense",
+      "color": "#3f51b5",
+      "icon": "school",
+      "userId": 3,
+      "id": 32
+    },
+    {
+      "name": "Образование",
+      "type": "expense",
+      "color": "#3f51b5",
+      "icon": "school",
+      "userId": 3,
+      "id": 33
+    },
+    {
+      "name": "Развлечения",
+      "type": "expense",
+      "color": "#58365e",
+      "icon": "movie",
+      "userId": 3,
+      "id": 34
+    },
+    {
+      "name": "Коммунальные услуги",
+      "type": "expense",
+      "color": "#795548",
+      "icon": "power",
+      "userId": 3,
+      "id": 35
+    },
+    {
+      "name": "Здоровье",
+      "type": "expense",
+      "color": "#e91e63",
+      "icon": "favorite",
+      "userId": 3,
+      "id": 36
     }
   ],
   "transactions": [
@@ -279,6 +396,15 @@
       "comment": "турнир",
       "userId": 1,
       "id": 14
+    },
+    {
+      "type": "expense",
+      "amount": 1000,
+      "categoryId": 25,
+      "date": "2025-05-10",
+      "comment": "123121",
+      "userId": 3,
+      "id": 15
     }
   ]
 }

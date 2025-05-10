@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { login } from "../../store/slices/authSlice"
 import type { AppDispatch, RootState } from "../../store"
-import Input from "../../components/UI/Input/Input"
 import styles from "./LoginPage.module.css"
 
 const LoginPage: React.FC = () => {
@@ -84,27 +83,33 @@ const LoginPage: React.FC = () => {
             )}
 
             <form className={styles.form} onSubmit={handleSubmit}>
-              <Input
-                  label="Email"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Введите ваш email"
-                  error={formErrors.email}
-                  fullWidth
-              />
+              <div className={styles.inputContainer}>
+                <label htmlFor="email" className={styles.label}>Email</label>
+                <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Введите ваш email"
+                    className={`${styles.input} ${formErrors.email ? styles.inputError : ""}`}
+                />
+                {formErrors.email && <p className={styles.errorText}>{formErrors.email}</p>}
+              </div>
 
-              <Input
-                  label="Пароль"
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Введите ваш пароль"
-                  error={formErrors.password}
-                  fullWidth
-              />
+              <div className={styles.inputContainer}>
+                <label htmlFor="password" className={styles.label}>Пароль</label>
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Введите ваш пароль"
+                    className={`${styles.input} ${formErrors.password ? styles.inputError : ""}`}
+                />
+                {formErrors.password && <p className={styles.errorText}>{formErrors.password}</p>}
+              </div>
 
               <button
                   type="submit"
@@ -114,6 +119,7 @@ const LoginPage: React.FC = () => {
                 {loading ? "Вход..." : "Войти"}
               </button>
             </form>
+
 
             <p className={styles.registerLink}>
               Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
