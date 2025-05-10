@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { addTransaction, updateTransaction, type Transaction } from "../../store/slices/transactionSlice"
 import type { RootState, AppDispatch } from "../../store"
 import Input from "../UI/Input/Input"
-import Select from "../UI/Select/Select"
 import styles from "./TransactionForm.module.css"
 
 interface TransactionFormProps {
@@ -144,18 +143,24 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
             fullWidth
         />
 
-        <Select
-            label="Категория"
-            name="categoryId"
-            value={formData.categoryId}
-            onChange={handleChange}
-            options={filteredCategories.map((cat) => ({
-              value: cat.id.toString(),
-              label: cat.name,
-            }))}
-            error={errors.categoryId}
-            fullWidth
-        />
+        <div className={styles.inputContainer}>
+          <label htmlFor="categoryId" className={styles.label}>Категория</label>
+          <select
+              id="categoryId"
+              name="categoryId"
+              value={formData.categoryId}
+              onChange={handleChange}
+              className={`${styles.select} ${errors.categoryId ? styles.selectError : ""}`}
+          >
+            {filteredCategories.map((cat) => (
+                <option key={cat.id} value={cat.id.toString()}>
+                  {cat.name}
+                </option>
+            ))}
+          </select>
+          {errors.categoryId && <p className={styles.errorText}>{errors.categoryId}</p>}
+        </div>
+
 
         <Input label="Дата" type="date" name="date" value={formData.date} onChange={handleChange} fullWidth />
 
