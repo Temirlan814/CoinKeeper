@@ -5,7 +5,6 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addCategory, updateCategory, type Category } from "../../store/slices/categorySlice"
 import type { RootState, AppDispatch } from "../../store"
-import Button from "../UI/Button/Button"
 import Input from "../UI/Input/Input"
 import IconSelector from "../Icon/IconSelector"
 import styles from "./CategoryForm.module.css"
@@ -115,13 +114,21 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ category, onClose }) => {
         <IconSelector selectedIcon={formData.icon} onSelectIcon={handleIconSelect} />
 
         <div className={styles.actions}>
-          <Button type="button" variant="secondary" onClick={onClose}>
+          <button
+              type="button"
+              onClick={onClose}
+              className={`${styles.actionButton} ${styles.secondary}`}
+          >
             Отмена
-          </Button>
-          <Button type="submit" variant="primary">
+          </button>
+          <button
+              type="submit"
+              className={`${styles.actionButton} ${styles.primary}`}
+          >
             {category ? "Обновить" : "Добавить"}
-          </Button>
+          </button>
         </div>
+
       </form>
   )
 }

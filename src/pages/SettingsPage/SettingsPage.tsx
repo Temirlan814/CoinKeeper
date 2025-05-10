@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchCategories, deleteCategory, type Category } from "../../store/slices/categorySlice"
 import type { RootState, AppDispatch } from "../../store"
 import Card from "../../components/UI/Card/Card"
-import Button from "../../components/UI/Button/Button"
 import CategoryList from "../../components/CategoryList/CategoryList"
 import CategoryForm from "../../components/CategoryForm/CategoryForm"
 import Modal from "../../components/Modal/Modal"
@@ -57,7 +56,9 @@ const SettingsPage: React.FC = () => {
       <Card className={styles.categoriesCard}>
         <div className={styles.cardHeader}>
           <h2 className={styles.cardTitle}>Категории</h2>
-          <Button onClick={handleAddCategory}>Добавить категорию</Button>
+          <button onClick={handleAddCategory} className={styles.settingButton}>
+            Добавить категорию
+          </button>
         </div>
 
         <div className={styles.tabs}>

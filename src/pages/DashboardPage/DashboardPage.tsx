@@ -7,7 +7,6 @@ import { fetchTransactions, deleteTransaction, type Transaction } from "../../st
 import { fetchCategories } from "../../store/slices/categorySlice"
 import type { RootState, AppDispatch } from "../../store"
 import Card from "../../components/UI/Card/Card"
-import Button from "../../components/UI/Button/Button"
 import TransactionList from "../../components/TransactionList/TransactionList"
 import TransactionForm from "../../components/TransactionForm/TransactionForm"
 import Modal from "../../components/Modal/Modal"
@@ -104,7 +103,9 @@ const DashboardPage: React.FC = () => {
       <div className={styles.transactionsSection}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Последние транзакции</h2>
-          <Button onClick={handleAddTransaction}>Добавить транзакцию</Button>
+          <button onClick={handleAddTransaction} className={styles.addButton}>
+            Добавить транзакцию
+          </button>
         </div>
 
         {loading ? (

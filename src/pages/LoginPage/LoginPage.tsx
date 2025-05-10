@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router-dom"
 import { login } from "../../store/slices/authSlice"
 import type { AppDispatch, RootState } from "../../store"
 import Input from "../../components/UI/Input/Input"
-import Button from "../../components/UI/Button/Button"
 import Card from "../../components/UI/Card/Card"
 import styles from "./LoginPage.module.css"
 
@@ -107,9 +106,14 @@ const LoginPage: React.FC = () => {
               fullWidth
             />
 
-            <Button type="submit" variant="primary" fullWidth disabled={loading}>
+            <button
+                type="submit"
+                className={styles.loginButton}
+                disabled={loading}
+            >
               {loading ? "Вход..." : "Войти"}
-            </Button>
+            </button>
+
           </form>
 
           <p className={styles.registerLink}>

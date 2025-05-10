@@ -192,15 +192,6 @@
       "userId": 1
     },
     {
-      "id": 2,
-      "type": "income",
-      "amount": 500,
-      "categoryId": 2,
-      "date": "2025-05-15",
-      "comment": "Веб-проект",
-      "userId": 1
-    },
-    {
       "id": 3,
       "type": "expense",
       "amount": 150,
@@ -219,39 +210,12 @@
       "userId": 1
     },
     {
-      "id": 5,
-      "type": "expense",
-      "amount": 50,
-      "categoryId": 5,
-      "date": "2025-05-10",
-      "comment": "Билеты в кино",
-      "userId": 1
-    },
-    {
       "id": 6,
       "type": "expense",
       "amount": 100,
       "categoryId": 6,
       "date": "2025-05-08",
       "comment": "Бензин",
-      "userId": 1
-    },
-    {
-      "id": 7,
-      "type": "expense",
-      "amount": 120,
-      "categoryId": 3,
-      "date": "2025-05-12",
-      "comment": "Покупка продуктов",
-      "userId": 1
-    },
-    {
-      "id": 8,
-      "type": "expense",
-      "amount": 30,
-      "categoryId": 5,
-      "date": "2025-05-18",
-      "comment": "Подписка на стриминг",
       "userId": 1
     },
     {
@@ -289,6 +253,15 @@
       "comment": "131321",
       "userId": 2,
       "id": 12
+    },
+    {
+      "type": "income",
+      "amount": 100000,
+      "categoryId": 2,
+      "date": "2025-05-10",
+      "comment": "победил акции",
+      "userId": 1,
+      "id": 13
     }
   ]
 }
