@@ -2,9 +2,9 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
-import type { RootState } from "../../store"
-import type { Transaction } from "../../store/slices/transactionSlice"
+import {useDispatch, useSelector} from "react-redux"
+import type {AppDispatch, RootState} from "../../store"
+import {fetchTransactions, Transaction} from "../../store/slices/transactionSlice"
 import Card from "../../components/UI/Card/Card"
 import Input from "../../components/UI/Input/Input"
 import {
@@ -21,6 +21,7 @@ import {
   ResponsiveContainer,
 } from "recharts"
 import styles from "./StatsPage.module.css"
+import {fetchCategories} from "../../store/slices/categorySlice.ts";
 
 interface ChartData {
   name: string
@@ -31,6 +32,7 @@ interface ChartData {
 const StatsPage: React.FC = () => {
   const { transactions } = useSelector((state: RootState) => state.transactions)
   const { categories } = useSelector((state: RootState) => state.categories)
+  const { user } = useSelector((state: RootState) => state.auth)
 
   const [startDate, setStartDate] = useState<string>(() => {
     const date = new Date()
@@ -45,6 +47,14 @@ const StatsPage: React.FC = () => {
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([])
   const [incomeData, setIncomeData] = useState<ChartData[]>([])
   const [expenseData, setExpenseData] = useState<ChartData[]>([])
+  const dispatch = useDispatch<AppDispatch>()
+
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchTransactions(user.id))
+      dispatch(fetchCategories(user.id))
+    }
+  }, [dispatch, user])
 
   useEffect(() => {
     const filtered = transactions.filter((transaction) => {
