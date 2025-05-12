@@ -27,7 +27,6 @@ const DashboardPage: React.FC = () => {
   const [income, setIncome] = useState(0)
   const [expense, setExpense] = useState(0)
 
-  // Новые состояния для фильтрации и разделения доходов/расходов
   const [activeTab, setActiveTab] = useState<"all" | "income" | "expense">("all")
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([])
   const [filters, setFilters] = useState({
@@ -63,44 +62,36 @@ const DashboardPage: React.FC = () => {
     setBalance(totalIncome - totalExpense)
   }, [transactions])
 
-  // Эффект для фильтрации транзакций
   useEffect(() => {
     let filtered = [...transactions]
 
-    // Фильтрация по типу (доходы/расходы/все)
     if (activeTab !== "all") {
       filtered = filtered.filter((transaction) => transaction.type === activeTab)
     }
 
-    // Фильтрация по дате начала
     if (filters.startDate) {
       const startDate = new Date(filters.startDate)
       filtered = filtered.filter((transaction) => new Date(transaction.date) >= startDate)
     }
 
-    // Фильтрация по дате окончания
     if (filters.endDate) {
       const endDate = new Date(filters.endDate)
       endDate.setHours(23, 59, 59, 999) // Устанавливаем конец дня
       filtered = filtered.filter((transaction) => new Date(transaction.date) <= endDate)
     }
 
-    // Фильтрация по категории
     if (filters.categoryId) {
       filtered = filtered.filter((transaction) => transaction.categoryId === Number.parseInt(filters.categoryId))
     }
 
-    // Фильтрация по минимальной сумме
     if (filters.minAmount) {
       filtered = filtered.filter((transaction) => transaction.amount >= Number.parseFloat(filters.minAmount))
     }
 
-    // Фильтрация по максимальной сумме
     if (filters.maxAmount) {
       filtered = filtered.filter((transaction) => transaction.amount <= Number.parseFloat(filters.maxAmount))
     }
 
-    // Сортировка по дате (сначала новые)
     filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
     setFilteredTransactions(filtered)
@@ -127,12 +118,12 @@ const DashboardPage: React.FC = () => {
     setSelectedTransaction(null)
   }
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("ru-RU", {
-      style: "currency",
-      currency: "RUB",
-    }).format(amount)
-  }
+  // const formatCurrency = (amount: number) => {
+  //   return new Intl.NumberFormat("ru-RU", {
+  //     style: "currency",
+  //     currency: "RUB",
+  //   }).format(amount)
+  // }
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -156,13 +147,25 @@ const DashboardPage: React.FC = () => {
     setIsFilterVisible(!isFilterVisible)
   }
 
-  // Получаем категории в зависимости от активной вкладки
   const getFilterCategories = () => {
     if (activeTab === "all") {
       return categories
     }
     return categories.filter((category) => category.type === activeTab)
   }
+
+  const { selectedCurrency, currencyRates } = useSelector((state: RootState) => state.currency);
+
+  const convertCurrency = (amount: number, currency: string): number => {
+    return amount * (currencyRates[currency] || 1);
+  };
+
+  const formatAmount = (amount: number): string => {
+    return new Intl.NumberFormat("ru-RU", {
+      style: "currency",
+      currency: selectedCurrency,
+    }).format(convertCurrency(amount, selectedCurrency));
+  };
 
   return (
       <div className={styles.dashboard}>
@@ -171,17 +174,17 @@ const DashboardPage: React.FC = () => {
         <div className={styles.summaryCards}>
           <Card className={styles.balanceCard}>
             <h2 className={styles.cardTitle}>Текущий баланс</h2>
-            <p className={styles.balanceAmount}>{formatCurrency(balance)}</p>
+            <p className={styles.balanceAmount}>{formatAmount(balance)}</p>
           </Card>
 
           <Card className={styles.incomeCard}>
             <h2 className={styles.cardTitle}>Общий доход</h2>
-            <p className={styles.incomeAmount}>{formatCurrency(income)}</p>
+            <p className={styles.incomeAmount}>{formatAmount(income)}</p>
           </Card>
 
           <Card className={styles.expenseCard}>
             <h2 className={styles.cardTitle}>Общие расходы</h2>
-            <p className={styles.expenseAmount}>{formatCurrency(expense)}</p>
+            <p className={styles.expenseAmount}>{formatAmount(expense)}</p>
           </Card>
         </div>
 

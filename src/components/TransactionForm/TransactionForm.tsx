@@ -18,6 +18,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
   const dispatch = useDispatch<AppDispatch>()
   const { categories } = useSelector((state: RootState) => state.categories)
   const { user } = useSelector((state: RootState) => state.auth)
+  const { selectedCurrency, currencyRates } = useSelector((state: RootState) => state.currency)
 
   const [formData, setFormData] = useState({
     type: transaction?.type || "expense",
@@ -31,7 +32,15 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
     amount: "",
     categoryId: "",
   })
-
+  useEffect(() => {
+    if (transaction && selectedCurrency) {
+      const convertedAmount = transaction.amount * ( (currencyRates[selectedCurrency] || 1))
+      setFormData((prev) => ({
+        ...prev,
+        amount: convertedAmount.toFixed(2),
+      }))
+    }
+  }, [transaction, selectedCurrency, currencyRates])
   const filteredCategories = categories.filter((category) => category.type === formData.type)
 
   useEffect(() => {
@@ -42,6 +51,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
       }))
     }
   }, [filteredCategories, formData.categoryId, formData.type])
+
 
   const formatAmount = (value: string) => {
     return value.replace(/[^\d.]/g, "")
@@ -92,11 +102,12 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ transaction, onClose 
     e.preventDefault()
 
     if (!validateForm() || !user) return
+    const baseAmount = Number.parseFloat(formData.amount) * (1 / (currencyRates[selectedCurrency]) || 1)
 
     const transactionData = {
       ...transaction,
       type: formData.type as "income" | "expense",
-      amount: Number.parseFloat(formData.amount),
+      amount: baseAmount,
       categoryId: Number.parseInt(formData.categoryId),
       date: formData.date,
       comment: formData.comment,

@@ -39,17 +39,29 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions, onEdit,
     return date.toLocaleDateString("ru-RU")
   }
 
-  const formatAmount = (amount: number): string => {
-    return new Intl.NumberFormat("ru-RU", {
-      style: "currency",
-      currency: "RUB",
-    }).format(amount)
-  }
+  // const formatAmount = (amount: number): string => {
+  //   return new Intl.NumberFormat("ru-RU", {
+  //     style: "currency",
+  //     currency: "RUB",
+  //   }).format(amount)
+  // }
 
   if (transactions.length === 0) {
     return <p className={styles.emptyMessage}>Транзакции не найдены.</p>
   }
 
+  const { selectedCurrency, currencyRates } = useSelector((state: RootState) => state.currency);
+
+  const convertCurrency = (amount: number, currency: string): number => {
+    return amount * (currencyRates[currency] || 1);
+  };
+
+  const formatAmount = (amount: number): string => {
+    return new Intl.NumberFormat("ru-RU", {
+      style: "currency",
+      currency: selectedCurrency,
+    }).format(convertCurrency(amount, selectedCurrency));
+  };
   return (
       <div className={styles.transactionList}>
         {transactions.map((transaction) => (

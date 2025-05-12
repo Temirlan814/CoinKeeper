@@ -3,12 +3,14 @@
     {
       "id": 1,
       "email": "user@example.com",
-      "password": "password123"
+      "password": "password123",
+      "currency": "RUB"
     },
     {
       "email": "temirlan123@mail.ru",
       "password": "123456",
-      "id": 2
+      "id": 2,
+      "currency": "KZT"
     }
   ],
   "categories": [
@@ -202,7 +204,7 @@
     {
       "id": 2,
       "type": "income",
-      "amount": 500,
+      "amount": 5000,
       "categoryId": 2,
       "date": "2025-05-15",
       "comment": "Веб-проект",
@@ -256,19 +258,10 @@
     {
       "id": 8,
       "type": "expense",
-      "amount": 30,
+      "amount": 6000,
       "categoryId": 5,
       "date": "2025-05-18",
       "comment": "Подписка на стриминг",
-      "userId": 1
-    },
-    {
-      "id": 9,
-      "type": "expense",
-      "amount": 12121,
-      "categoryId": 3,
-      "date": "2025-05-08",
-      "comment": "Test comment",
       "userId": 1
     },
     {
@@ -306,6 +299,15 @@
       "comment": "День рождения",
       "userId": 1,
       "id": 13
+    },
+    {
+      "type": "income",
+      "amount": 50000,
+      "categoryId": 1,
+      "date": "2025-05-12",
+      "comment": "",
+      "userId": 1,
+      "id": 14
     }
   ]
 }

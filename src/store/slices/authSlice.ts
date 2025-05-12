@@ -72,6 +72,7 @@ export const register = createAsyncThunk(
         const userResponse = await api.post("/users", {
           email: credentials.email,
           password: credentials.password,
+          currency: "KZT"
         })
 
         const newUser = userResponse.data

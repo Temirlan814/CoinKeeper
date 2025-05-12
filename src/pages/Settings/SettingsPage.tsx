@@ -11,6 +11,7 @@ import CategoryList from "../../components/CategoryList/CategoryList"
 import CategoryForm from "../../components/CategoryForm/CategoryForm"
 import Modal from "../../components/Modal/Modal"
 import styles from "./SettingsPage.module.css"
+import {setCurrency, updateUserCurrency} from "@/store/slices/currencySlice.ts";
 
 const SettingsPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -50,10 +51,49 @@ const SettingsPage: React.FC = () => {
 
   const filteredCategories = categories.filter((category) => category.type === activeTab)
 
+  const handleCurrencyChange = (currency: string) => {
+    dispatch(updateUserCurrency(currency));
+  }
+  const { selectedCurrency, currencyRates } = useSelector((state: RootState) => state.currency);
+  console.log(selectedCurrency)
   return (
     <div className={styles.settingsPage}>
       <h1 className={styles.title}>Настройки</h1>
-
+      <Card className={styles.categoriesCard}>
+        <div className={styles.cardHeader}>
+          <h2 className={styles.cardTitle}>Выберите валюту</h2>
+          <div className={styles.currencyButtons}>
+            <Button
+                className={`${selectedCurrency === "KZT" ? styles.selected : ""}`}
+                onClick={() => handleCurrencyChange("KZT")}
+                variant="primary"
+            >
+              KZT
+            </Button>
+            <Button
+                className={`${selectedCurrency === "CNY" ? styles.selected : ""}`}
+                onClick={() => handleCurrencyChange("CNY")}
+                variant="primary"
+            >
+              CNY
+            </Button>
+            <Button
+                className={`${selectedCurrency === "JPY" ? styles.selected : ""}`}
+                onClick={() => handleCurrencyChange("JPY")}
+                variant="primary"
+            >
+              JPY
+            </Button>
+            <Button
+                className={`${selectedCurrency === "RUB" ? styles.selected : ""}`}
+                onClick={() => handleCurrencyChange("RUB")}
+                variant="primary"
+            >
+              RUB
+            </Button>
+          </div>
+        </div>
+      </Card>
       <Card className={styles.categoriesCard}>
         <div className={styles.cardHeader}>
           <h2 className={styles.cardTitle}>Категории</h2>

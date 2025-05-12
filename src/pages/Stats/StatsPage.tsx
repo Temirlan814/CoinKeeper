@@ -105,19 +105,19 @@ const StatsPage: React.FC = () => {
     setExpenseData(expenseChartData)
   }, [filteredTransactions, categories])
 
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat("ru-RU", {
-      style: "currency",
-      currency: "RUB",
-    }).format(value)
-  }
+  // const formatCurrency = (value: number) => {
+  //   return new Intl.NumberFormat("ru-RU", {
+  //     style: "currency",
+  //     currency: "RUB",
+  //   }).format(value)
+  // }
 
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
         <div className={styles.customTooltip}>
           <p className={styles.tooltipLabel}>{payload[0].name}</p>
-          <p className={styles.tooltipValue}>{formatCurrency(payload[0].value)}</p>
+          <p className={styles.tooltipValue}>{formatAmount(payload[0].value)}</p>
         </div>
       )
     }
@@ -125,6 +125,18 @@ const StatsPage: React.FC = () => {
     return null
   }
 
+  const { selectedCurrency, currencyRates } = useSelector((state: RootState) => state.currency);
+
+  const convertCurrency = (amount: number, currency: string): number => {
+    return amount * (currencyRates[currency] || 1);
+  };
+
+  const formatAmount = (amount: number): string => {
+    return new Intl.NumberFormat("ru-RU", {
+      style: "currency",
+      currency: selectedCurrency,
+    }).format(convertCurrency(amount, selectedCurrency));
+  };
   return (
     <div className={styles.statsPage}>
       <h1 className={styles.title}>Статистика</h1>
@@ -165,7 +177,7 @@ const StatsPage: React.FC = () => {
                   <div key={index} className={styles.legendItem}>
                     <div className={styles.legendColor} style={{ backgroundColor: entry.color }}></div>
                     <span className={styles.legendName}>{entry.name}</span>
-                    <span className={styles.legendValue}>{formatCurrency(entry.value)}</span>
+                    <span className={styles.legendValue}>{formatAmount(entry.value)}</span>
                   </div>
                 ))}
               </div>
@@ -203,7 +215,7 @@ const StatsPage: React.FC = () => {
                   <div key={index} className={styles.legendItem}>
                     <div className={styles.legendColor} style={{ backgroundColor: entry.color }}></div>
                     <span className={styles.legendName}>{entry.name}</span>
-                    <span className={styles.legendValue}>{formatCurrency(entry.value)}</span>
+                    <span className={styles.legendValue}>{formatAmount(entry.value)}</span>
                   </div>
                 ))}
               </div>
@@ -229,12 +241,13 @@ const StatsPage: React.FC = () => {
                   color: "#f44336",
                 },
               ]}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              margin={{ top: 20, right: 30, left: 30, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
-              <YAxis tickFormatter={(value) => formatCurrency(value)} />
-              <Tooltip formatter={(value) => formatCurrency(value as number)} />
+              <YAxis tickFormatter={(value) => formatAmount(value)}
+                     tick={{ fontSize: 10 ,angle: -45  }}/>
+              <Tooltip formatter={(value) => formatAmount(value as number)} />
               <Legend />
               <Bar dataKey="amount" name="Сумма" fill="#8884d8">
                 {[
