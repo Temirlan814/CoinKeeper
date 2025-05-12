@@ -51,7 +51,7 @@ export const login = createAsyncThunk("auth/login", async (credentials: LoginCre
 
     return user
   } catch (error: any) {
-    return rejectWithValue(error.response?.data?.message || "Оши��ка входа")
+    return rejectWithValue(error.response?.data?.message || "Ошибка входа")
   }
 })
 
