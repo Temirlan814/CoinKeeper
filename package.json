@@ -4,10 +4,12 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+     "dev1": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "json-server --watch db.json --port 3001",
+    "dev": "vite --host 0.0.0.0 --port $PORT",
+    "server": "json-server --watch db.json --port $PORT",
+    "server1": "json-server --watch db.json --port 3001",
     "start": "npm-run-all --parallel dev server"
   },
   "dependencies": {

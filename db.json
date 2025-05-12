@@ -179,6 +179,14 @@
       "icon": "school",
       "userId": 2,
       "id": 21
+    },
+    {
+      "name": "Подарки",
+      "type": "income",
+      "color": "#0050c7",
+      "icon": "gift",
+      "userId": 1,
+      "id": 22
     }
   ],
   "transactions": [
@@ -289,6 +297,15 @@
       "comment": "131321",
       "userId": 2,
       "id": 12
+    },
+    {
+      "type": "income",
+      "amount": 50000,
+      "categoryId": 22,
+      "date": "2025-05-12",
+      "comment": "День рождения",
+      "userId": 1,
+      "id": 13
     }
   ]
 }
