@@ -11,6 +11,24 @@
       "password": "123456",
       "id": 2,
       "currency": "KZT"
+    },
+    {
+      "email": "test123@test.com",
+      "password": "123456",
+      "currency": "KZT",
+      "id": 3
+    },
+    {
+      "email": "test1234@test.com",
+      "password": "123456",
+      "currency": "KZT",
+      "id": 4
+    },
+    {
+      "email": "test12345@test.com",
+      "password": "123456",
+      "currency": "RUB",
+      "id": 5
     }
   ],
   "categories": [
@@ -189,6 +207,238 @@
       "icon": "gift",
       "userId": 1,
       "id": 22
+    },
+    {
+      "name": "Зарплата",
+      "type": "income",
+      "color": "#4caf50",
+      "icon": "money",
+      "userId": 3,
+      "id": 23
+    },
+    {
+      "name": "Фриланс",
+      "type": "income",
+      "color": "#2196f3",
+      "icon": "work",
+      "userId": 3,
+      "id": 24
+    },
+    {
+      "name": "Инвестиции",
+      "type": "income",
+      "color": "#9c27b0",
+      "icon": "trending_up",
+      "userId": 3,
+      "id": 25
+    },
+    {
+      "name": "Продукты",
+      "type": "expense",
+      "color": "#f44336",
+      "icon": "shopping_cart",
+      "userId": 3,
+      "id": 26
+    },
+    {
+      "name": "Аренда",
+      "type": "expense",
+      "color": "#ff9800",
+      "icon": "home",
+      "userId": 3,
+      "id": 27
+    },
+    {
+      "name": "Развлечения",
+      "type": "expense",
+      "color": "#58365e",
+      "icon": "movie",
+      "userId": 3,
+      "id": 28
+    },
+    {
+      "name": "Транспорт",
+      "type": "expense",
+      "color": "#607d8b",
+      "icon": "directions_car",
+      "userId": 3,
+      "id": 29
+    },
+    {
+      "name": "Коммунальные услуги",
+      "type": "expense",
+      "color": "#795548",
+      "icon": "power",
+      "userId": 3,
+      "id": 30
+    },
+    {
+      "name": "Здоровье",
+      "type": "expense",
+      "color": "#e91e63",
+      "icon": "favorite",
+      "userId": 3,
+      "id": 31
+    },
+    {
+      "name": "Образование",
+      "type": "expense",
+      "color": "#3f51b5",
+      "icon": "school",
+      "userId": 3,
+      "id": 32
+    },
+    {
+      "name": "Зарплата",
+      "type": "income",
+      "color": "#4caf50",
+      "icon": "money",
+      "userId": 4,
+      "id": 33
+    },
+    {
+      "name": "Фриланс",
+      "type": "income",
+      "color": "#2196f3",
+      "icon": "work",
+      "userId": 4,
+      "id": 34
+    },
+    {
+      "name": "Инвестиции",
+      "type": "income",
+      "color": "#9c27b0",
+      "icon": "trending_up",
+      "userId": 4,
+      "id": 35
+    },
+    {
+      "name": "Продукты",
+      "type": "expense",
+      "color": "#f44336",
+      "icon": "shopping_cart",
+      "userId": 4,
+      "id": 36
+    },
+    {
+      "name": "Аренда",
+      "type": "expense",
+      "color": "#ff9800",
+      "icon": "home",
+      "userId": 4,
+      "id": 37
+    },
+    {
+      "name": "Развлечения",
+      "type": "expense",
+      "color": "#58365e",
+      "icon": "movie",
+      "userId": 4,
+      "id": 38
+    },
+    {
+      "name": "Коммунальные услуги",
+      "type": "expense",
+      "color": "#795548",
+      "icon": "power",
+      "userId": 4,
+      "id": 39
+    },
+    {
+      "name": "Здоровье",
+      "type": "expense",
+      "color": "#e91e63",
+      "icon": "favorite",
+      "userId": 4,
+      "id": 40
+    },
+    {
+      "name": "Образование",
+      "type": "expense",
+      "color": "#3f51b5",
+      "icon": "school",
+      "userId": 4,
+      "id": 41
+    },
+    {
+      "name": "Зарплата",
+      "type": "income",
+      "color": "#4caf50",
+      "icon": "money",
+      "userId": 5,
+      "id": 42
+    },
+    {
+      "name": "Фриланс",
+      "type": "income",
+      "color": "#2196f3",
+      "icon": "work",
+      "userId": 5,
+      "id": 43
+    },
+    {
+      "name": "Инвестиции",
+      "type": "income",
+      "color": "#9c27b0",
+      "icon": "trending_up",
+      "userId": 5,
+      "id": 44
+    },
+    {
+      "name": "Продукты",
+      "type": "expense",
+      "color": "#f44336",
+      "icon": "shopping_cart",
+      "userId": 5,
+      "id": 45
+    },
+    {
+      "name": "Аренда",
+      "type": "expense",
+      "color": "#ff9800",
+      "icon": "home",
+      "userId": 5,
+      "id": 46
+    },
+    {
+      "name": "Развлечения",
+      "type": "expense",
+      "color": "#58365e",
+      "icon": "movie",
+      "userId": 5,
+      "id": 47
+    },
+    {
+      "name": "Транспорт",
+      "type": "expense",
+      "color": "#607d8b",
+      "icon": "directions_car",
+      "userId": 5,
+      "id": 48
+    },
+    {
+      "name": "Коммунальные услуги",
+      "type": "expense",
+      "color": "#795548",
+      "icon": "power",
+      "userId": 5,
+      "id": 49
+    },
+    {
+      "name": "Здоровье",
+      "type": "expense",
+      "color": "#e91e63",
+      "icon": "favorite",
+      "userId": 5,
+      "id": 50
+    },
+    {
+      "name": "Образование",
+      "type": "expense",
+      "color": "#3f51b5",
+      "icon": "school",
+      "userId": 5,
+      "id": 51
     }
   ],
   "transactions": [
@@ -199,15 +449,6 @@
       "categoryId": 1,
       "date": "2025-05-01",
       "comment": "Ежемесячная зарплата",
-      "userId": 1
-    },
-    {
-      "id": 2,
-      "type": "income",
-      "amount": 5000,
-      "categoryId": 2,
-      "date": "2025-05-15",
-      "comment": "Веб-проект",
       "userId": 1
     },
     {
@@ -258,7 +499,7 @@
     {
       "id": 8,
       "type": "expense",
-      "amount": 6000,
+      "amount": 60000,
       "categoryId": 5,
       "date": "2025-05-18",
       "comment": "Подписка на стриминг",
